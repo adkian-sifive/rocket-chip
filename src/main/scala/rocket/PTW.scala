@@ -469,6 +469,12 @@ class PTW(n: Int)(implicit edge: TLEdgeOut, p: Parameters) extends CoreModule()(
           aux_pte.ppn := makeFragmentedSuperpagePPN(aux_pte.ppn)
         }
       }
+      when(do_both_stages) {
+        resp_fragmented_superpage := true
+        when(!resp_gf) {
+          aux_pte.ppn := makeFragmentedSuperpagePPN(aux_pte.ppn)
+        }
+      }
     }
   }
 
